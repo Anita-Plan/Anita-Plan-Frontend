@@ -3,14 +3,14 @@ import axios from "axios";
 import "./weeklyPlansPage.css";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "https://anita-plan-api.adaptable.app";
+const API_URL = "http://localhost:5005";
 
 function WeeklyPlanPage() {
   const [user, setUser] = useState(null);
   const [popupActive, setPopupActive] = useState(false);
   const [newPlan, setNewPlan] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [dayOfWeek, setDayOfWeek] = useState("Monday");
+  const [dayOfWeek, setDayOfWeek] = useState("");
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
   const [showItems, setShowItems] = useState(false);
@@ -56,11 +56,24 @@ function WeeklyPlanPage() {
     }
   };
 
+  const addWeekAndUpdate = async () => {
+    try {
+      if (!selectedPlan) {
+        alert("Please select a plan.");
+        return;
+      }
+      await addWeek();
+      await getWeeks();
+    } catch (error) {
+      console.error("Error in adding week or fetching weeks:", error);
+    }
+  };
+
   useEffect(() => {
     getName();
     getWeeks();
   }, []);
-  
+
   const MONDAY =
     items &&
     items.filter((e) => {
@@ -264,13 +277,7 @@ function WeeklyPlanPage() {
             ))}
           </select>
 
-          <div
-            className="button"
-            onClick={() => {
-              addWeek();
-              getWeeks();
-            }}
-          >
+          <div className="button" onClick={addWeekAndUpdate}>
             Plan day
           </div>
         </div>
