@@ -11,11 +11,12 @@ import { useCookies } from "react-cookie";
 
 function App() {
   const [cookies, setCookie] = useCookies("token_id");
+  const token = localStorage.getItem("authToken");
   return (
     <div className="App">
       <Header />
       <Routes>
-        {cookies.token_id && (
+        {token && (
           <>
             <Route path="/plan" element={<PlanPage />} />
             <Route path="/weeklyPlan" element={<WeeklyPlanPage />} />
