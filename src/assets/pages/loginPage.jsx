@@ -26,6 +26,7 @@ function LoginPage() {
       localStorage.setItem("authToken", response.data.authToken);
       localStorage.setItem("userId", response.data.userId);
       navigate("/plan");
+      location.reload();
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Password or email incorrect. Please try again.");
