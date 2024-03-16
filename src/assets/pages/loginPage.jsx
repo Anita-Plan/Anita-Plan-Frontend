@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -9,7 +9,7 @@ const API_URL = "https://anita-plan-api.adaptable.app/";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cookies, setCookie] = useCookies("token_id");
+  const [cookies, setCookie] = useCookies(["token_id"]); // Ensure the correct initialization of cookies
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -19,14 +19,22 @@ function LoginPage() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const requestBody = { email, password };
+
     try {
       const response = await axios.post(`${API_URL}/login`, requestBody);
       console.log("JWT token", response.data.authToken);
-      setCookie("token_id", response.data.userId);
+
+      // Set cookie and localStorage synchronously
+      setCookie("token_id", response.data.userId, { path: "/" }); // Specify options as needed
       localStorage.setItem("authToken", response.data.authToken);
       localStorage.setItem("userId", response.data.userId);
+
+      // Assuming you need to wait for something async before navigating
+      // Here we simulate an async operation if needed (e.g., an async setCookie, which is not the case here)
+      // In your scenario, this step might not be necessary but is included for demonstration
+      await Promise.resolve(); // Simulate awaiting an asynchronous operation
+
       navigate("/plan");
-      location.reload();
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Password or email incorrect. Please try again.");
@@ -47,7 +55,6 @@ function LoginPage() {
               <input
                 type="email"
                 name="email"
-                id="email"
                 value={email}
                 onChange={handleEmail}
               />
@@ -57,18 +64,19 @@ function LoginPage() {
               <input
                 type="password"
                 name="password"
-                id="password"
                 value={password}
                 onChange={handlePassword}
               />
             </div>
-            <button className="button-container2">Log In</button>
+            <button type="submit" className="button-container2">
+              Log In
+            </button>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
           </form>
           <p className="no-account-yet">Don't have an account yet?</p>
-          <div className="link-container2">
-            <Link to={"/signup"}> Sign Up</Link>
-          </div>
+          <Link to={"/signup"} className="link-container2">
+            Sign Up
+          </Link>
         </div>
       </div>
     </div>
