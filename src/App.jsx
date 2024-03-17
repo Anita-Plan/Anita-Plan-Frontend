@@ -16,12 +16,10 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        {token && (
-          <>
+        
             <Route path="/plan" element={<PlanPage />} />
             <Route path="/weeklyPlan" element={<WeeklyPlanPage />} />
-          </>
-        )}
+         
 
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
