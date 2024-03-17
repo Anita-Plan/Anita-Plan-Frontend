@@ -287,9 +287,13 @@ function WeeklyPlanPage() {
             }}
             name="dayOfWeek"
           >
-            {newPlan &&  <option value={newPlan.text}>
-                {newPlan.text}
+            {newPlan &&  newPlan.map((e)=>{
+              return <>
+              <option value={e.text}>
+                {e.text}
               </option>
+              </>
+            })
               
             }
           </select>
