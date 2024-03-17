@@ -39,7 +39,10 @@ function WeeklyPlanPage() {
       setUser(user);
       
       // Extracting the 'plan' property values from user data
-      const userPlans = user.plan.map((item) => ({item}));
+      const userPlans = user.plan.map((item) => {
+        console.log (item)
+         return item}
+      );
       setNewPlan(userPlans);
     } catch (err) {
       console.log(err);
@@ -105,7 +108,7 @@ function WeeklyPlanPage() {
   const THURSDAY =
     items &&
     items.filter((e) => {
-      return e.dayOfWeek === "Wednesday";
+      return e.dayOfWeek === "Thursday";
     });
   const FRIDAY =
     items &&
