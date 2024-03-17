@@ -25,7 +25,7 @@ function LoginPage() {
       setCookie("token_id", response.data.userId);
       localStorage.setItem("authToken", response.data.authToken);
       localStorage.setItem("userId", response.data.userId);
-      // navigate("/plan");
+      navigate("/plan");
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Password or email incorrect. Please try again.");
