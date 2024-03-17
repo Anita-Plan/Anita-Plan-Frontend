@@ -17,7 +17,7 @@ const Navbar = () => {
 
   // Function to handle logout
   const handleLogout = () => {
-    removeCookie("token_id");
+    removeCookie("token_id", "");
     localStorage.removeItem("authToken");
     localStorage.removeItem("userId");
     setIsLoggedIn(false); // Update authentication state
