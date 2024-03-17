@@ -8,11 +8,11 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication
   const [cookies, setCookie, removeCookie] = useCookies("token_id");
   const navigate = useNavigate();
+  const authToken = localStorage.getItem("authToken");
 
   // Check if the user is logged in when the component mounts
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
-    setIsLoggedIn(!!authToken);
+    setIsLoggedIn(!authToken);
   }, []);
 
   // Function to handle logout
@@ -39,7 +39,7 @@ const Navbar = () => {
         <Link to="/about">About</Link>
 
         {/* Conditional rendering based on authentication state */}
-        {isLoggedIn ? (
+        {authToken ? (
           <button onClick={handleLogout}>Logout</button>
         ) : (
           <Link to="/">Login</Link>
