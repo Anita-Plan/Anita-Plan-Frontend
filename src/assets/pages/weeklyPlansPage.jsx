@@ -8,7 +8,7 @@ const API_URL = "https://anita-plan-api.adaptable.app/";
 function WeeklyPlanPage() {
   const [user, setUser] = useState(null);
   const [popupActive, setPopupActive] = useState(false);
-  const [newPlan, setNewPlan] = useState([]);
+  const [newPlan, setNewPlan] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [items, setItems] = useState([]);
