@@ -39,7 +39,7 @@ function WeeklyPlanPage() {
       setUser(user);
       
       // Extracting the 'plan' property values from user data
-      const userPlans = user.plan.map((plan) => plan.item);
+      const userPlans = user.plan.map((item) => item);
       setNewPlan(userPlans);
     } catch (err) {
       console.log(err);
