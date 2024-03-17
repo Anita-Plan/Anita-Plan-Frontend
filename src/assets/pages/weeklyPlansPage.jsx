@@ -17,7 +17,7 @@ function WeeklyPlanPage() {
 
   const userId = localStorage.getItem("userId");
 
-  const getName = async () => {
+  /*const getName = async () => {
     try {
       const res = await axios.get(`${API_URL}/user/${userId}`);
       const user = res.data;
@@ -28,6 +28,19 @@ function WeeklyPlanPage() {
       }));
 
       setNewPlan(userPlan);
+    } catch (err) {
+      console.log(err);
+    }
+  }; */
+  const getName = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/user/${userId}`);
+      const user = res.data;
+      setUser(user);
+      
+      // Extracting the 'plan' property values from user data
+      const userPlans = user.plan.map((plan) => plan.item);
+      setNewPlan(userPlans);
     } catch (err) {
       console.log(err);
     }
