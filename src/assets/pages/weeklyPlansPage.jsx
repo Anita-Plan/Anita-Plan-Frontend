@@ -122,6 +122,7 @@ function WeeklyPlanPage() {
     });
   const displayItems = (day) => {
     setShowItems(day);
+    console.log("New Plan:", newPlan);
   };
   return (
     <div>
@@ -286,7 +287,9 @@ function WeeklyPlanPage() {
             <option value={"Choose a plan"}>Choose a plan</option>
             {newPlan.length > 0 &&
               newPlan.map((plan) => (
-                <option key={plan._id} value={plan.text}></option>
+                <option key={plan._id} value={plan.text}>
+                  {plan.text}
+                </option>
               ))}
           </select>
 
