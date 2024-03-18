@@ -291,11 +291,12 @@ function WeeklyPlanPage() {
             name="dayOfWeek"
           >
             <option value={"Choose a plan"}>Choose a plan</option>
-            {newPlan.map((plan) => (
-              <option key={plan._id} value={plan.text}>
-                {plan.text}
-              </option>
-            ))}
+            {newPlan.length > 0 &&
+              newPlan.map((plan) => (
+                <option key={plan._id} value={plan.text}>
+                  {plan.text}
+                </option>
+              ))}
           </select>
 
           <div className="button" onClick={addWeekAndUpdate}>
