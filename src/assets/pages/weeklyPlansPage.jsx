@@ -287,9 +287,9 @@ function WeeklyPlanPage() {
           >
             <option value={"Choose a plan"}>Choose a plan</option>
             {newPlan.length > 0 &&
-              newPlan.map((plan) => (
-                <option key={plan._id} value={plan.text}>
-                  {plan.text}
+              newPlan.map((plan, index) => (
+                <option key={index} value={plan}>
+                  {plan}
                 </option>
               ))}
           </select>
