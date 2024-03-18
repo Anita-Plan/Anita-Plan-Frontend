@@ -84,6 +84,7 @@ function WeeklyPlanPage() {
     getName();
     getWeeks();
   }, []);
+  console.log(newPlan);
 
   const MONDAY =
     items &&
