@@ -351,7 +351,6 @@ function PlanPage() {
   const addPlan = async () => {
     try {
       const response = await axios.post(`${API_URL}/plans/new`, {
-        planItem: newPlan,
         text: newPlan,
         user: userId,
       });
