@@ -337,7 +337,7 @@ function PlanPage() {
       const updatedPlanArray = [...(user?.plan || []), response.data];
 
       const updateUser = await axios.put(`${API_URL}/user/${userId}`, {
-        ...user.plan,
+        ...user,
         plan: updatedPlanArray,
       });
 

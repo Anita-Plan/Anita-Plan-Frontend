@@ -272,6 +272,7 @@ function WeeklyPlanPage() {
             }}
             name="dayOfWeek"
           >
+            <option value={"Choose a Day"}>Choose a day</option>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
             <option value="Wednesday">Wednesday</option>
