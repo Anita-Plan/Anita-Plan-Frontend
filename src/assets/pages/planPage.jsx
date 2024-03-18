@@ -357,7 +357,7 @@ function PlanPage() {
 
       const createdPlanItem = response.data;
       await axios.put(`${API_URL}/user/${userId}`, {
-        planItem: createdPlanItem,
+        planItem: newPlan,
       });
       setPopupActive(false);
       setNewPlan("");
