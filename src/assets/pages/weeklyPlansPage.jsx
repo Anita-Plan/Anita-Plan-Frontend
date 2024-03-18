@@ -128,6 +128,7 @@ function WeeklyPlanPage() {
     });
   const displayItems = (day) => {
     setShowItems(day);
+    console.log("New Plan:", newPlan);
   };
   return (
     <div>
