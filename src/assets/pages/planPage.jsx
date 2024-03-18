@@ -327,7 +327,7 @@ function PlanPage() {
     }
   };
 
-  const addPlan = async () => {
+  /* const addPlan = async () => {
     try {
       const response = await axios.post(`${API_URL}/plans/new`, {
         text: newPlan,
@@ -340,6 +340,26 @@ function PlanPage() {
         plan: updatedPlanArray,
       });
 
+      setPopupActive(false);
+      setNewPlan("");
+      getPlans();
+    } catch (error) {
+      console.error("Error adding plan:", error);
+    }
+  }; */
+
+  const addPlan = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/plans/new`, {
+        planItem: newPlan,
+        text: newPlan,
+        user: userId,
+      });
+
+      const createdPlanItem = response.data;
+      await axios.put(`${API_URL}/user/${userId}`, {
+        planItem: createdPlanItem,
+      });
       setPopupActive(false);
       setNewPlan("");
       getPlans();
