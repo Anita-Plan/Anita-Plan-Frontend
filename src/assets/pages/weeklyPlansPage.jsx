@@ -37,12 +37,12 @@ function WeeklyPlanPage() {
       const res = await axios.get(`${API_URL}/user/${userId}`);
       const user = res.data;
       setUser(user);
-      
+
       // Extracting the 'plan' property values from user data
       const userPlans = user.plan.map((item) => {
-        console.log (item.plan)
-         return item.plan}
-      );
+        console.log(item.plan);
+        return item.plan;
+      });
       setNewPlan(userPlans);
     } catch (err) {
       console.log(err);
@@ -89,7 +89,7 @@ function WeeklyPlanPage() {
     getName();
     getWeeks();
   }, []);
-  console.log(newPlan)
+  console.log(newPlan);
 
   const MONDAY =
     items &&
@@ -281,21 +281,22 @@ function WeeklyPlanPage() {
             <option value="Sunday">Sunday</option>
           </select>
           <label>Choose a plan:</label>
+
           <select
             onChange={(e) => {
               setSelectedPlan(e.target.value);
             }}
             name="dayOfWeek"
           >
-            {newPlan &&  newPlan.map((e)=>{
-              return <>
-              <option value={e.text}>
-                {e.text}
-              </option>
-              </>
-            })
-              
-            }
+            {newPlan &&
+              newPlan.map((e) => {
+                return (
+                  <>
+                    <option value={"Choose a plan"}>Choose a plan</option>
+                    <option value={e.text}>{e.text}</option>
+                  </>
+                );
+              })}
           </select>
 
           <div className="button" onClick={addWeekAndUpdate}>
