@@ -231,7 +231,6 @@ function PlanPage() {
 
 export default PlanPage; */
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import React, { useState, useEffect } from "react";
@@ -270,7 +269,9 @@ function PlanPage() {
     try {
       const res = await axios.get(`${API_URL}/plans`);
       if (res) {
-        const filterPlans = res.data.filter((e) => e.user && e.user._id === userId);
+        const filterPlans = res.data.filter(
+          (e) => e.user && e.user._id === userId
+        );
         setPlans(filterPlans);
       }
     } catch (err) {
@@ -279,14 +280,14 @@ function PlanPage() {
       setLoading(false);
     }
   };
-  
+
   const fetchData = async () => {
-    try { 
+    try {
       setLoading(true);
       await getName();
       await getPlans();
       setLoading(false);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -333,10 +334,10 @@ function PlanPage() {
         user: userId,
       });
 
-      const updatedPlanArray = [...user?.plan || [], response.data];
+      const updatedPlanArray = [...(user?.plan || []), response.data];
 
       const updateUser = await axios.put(`${API_URL}/user/${userId}`, {
-        ...user,
+        ...user.plan,
         plan: updatedPlanArray,
       });
 
