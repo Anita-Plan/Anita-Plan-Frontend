@@ -40,8 +40,8 @@ function WeeklyPlanPage() {
 
       // Extracting the 'plan' property values from user data
       const userPlans = user.plan.map((item) => {
-        console.log(item.plan);
-        return item.plan;
+        console.log(item.plan.tex);
+        return item.plan.text;
       });
       setNewPlan(userPlans);
     } catch (err) {
