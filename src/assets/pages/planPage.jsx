@@ -119,8 +119,8 @@ function PlanPage() {
         text: newPlan,
         user: userId,
       });
-
       const createdPlanItem = response.data;
+
       await axios.put(`${API_URL}/user/${userId}`, {
         planItem: createdPlanItem,
       });
